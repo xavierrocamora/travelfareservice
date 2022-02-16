@@ -2,6 +2,8 @@ package com.tap.travelfareservice.Driver;
 
 import com.tap.travelfareservice.domain.Driver;
 import com.tap.travelfareservice.domain.VehicleType;
+import com.tap.travelfareservice.exception.BadRequestException;
+import com.tap.travelfareservice.exception.DriverNotFoundException;
 import com.tap.travelfareservice.repository.DriverRepository;
 import com.tap.travelfareservice.service.DriverService;
 import org.junit.jupiter.api.BeforeEach;
@@ -111,10 +113,25 @@ class DriverServiceTest {
 
         // then
         assertThatThrownBy( () -> underTest.addDriver(driver))
-                .isInstanceOf(HttpClientErrorException.BadRequest.class)
+                .isInstanceOf(BadRequestException.class)
                 .hasMessageContaining("Email " + driver.getEmail() + " taken");
 
         // if an exception is thrown we must verify nothing is saved
         verify(driverRepository, never()).save(any());
+    }
+
+    @Test
+    void willThrowWhenDeleteDriverNotFound() {
+        // given
+        long id = 10;
+        given(driverRepository.existsById(id))
+                .willReturn(false);
+        // when
+        // then
+        assertThatThrownBy(() -> underTest.deleteDriver(id))
+                .isInstanceOf(DriverNotFoundException.class)
+                .hasMessageContaining("Driver with id " + id + " does not exist");
+
+        verify(driverRepository, never()).deleteById(any());
     }
 }

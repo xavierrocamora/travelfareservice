@@ -1,6 +1,8 @@
 package com.tap.travelfareservice.service;
 
 import com.tap.travelfareservice.domain.Driver;
+import com.tap.travelfareservice.exception.BadRequestException;
+import com.tap.travelfareservice.exception.DriverNotFoundException;
 import com.tap.travelfareservice.repository.DriverRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,13 @@ public class DriverService {
     }
 
     public Driver addDriver(Driver driver) {
+        Boolean existsEmail = driverRepository
+                .selectExistsEmail(driver.getEmail());
+        if (existsEmail) {
+            throw new BadRequestException(
+                    "Email " + driver.getEmail() + " taken"
+            );
+        }
         return driverRepository.save(driver);
     }
 
@@ -32,8 +41,13 @@ public class DriverService {
         return driverRepository.save(driver);
     }
 
-    public void deleteDriver(Long id) {
-        driverRepository.deleteById(id);
+    public void deleteDriver(Long driverId) {
+        if(!driverRepository.existsById(driverId)) {
+            throw new DriverNotFoundException(
+                    "Driver with id " + driverId + " does not exist"
+            );
+        }
+        driverRepository.deleteById(driverId);
     }
 
 
