@@ -1,0 +1,7 @@
+<div class="container" id="main-container">
+  <div class="row">
+    <div *ngFor="let driver of drivers" class="col-md-6 col-xl-3">
+      <app-driver [driver]="driver" (deleted)="driverDeleted($event)"></app-driver>
+    </div>
+  </div>
+</div>
