@@ -23,7 +23,7 @@ export class DriverComponent implements OnInit {
   }
 
   onUpdateDriver(id: number) {
-    this.router.navigate(['', id]);
+    this.router.navigate(['update-driver', id]);
   }
 
   onDeleteDriver(id: number){
