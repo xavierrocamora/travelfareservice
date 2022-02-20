@@ -36,12 +36,12 @@ class DriverServiceTest {
     private DriverService underTest;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         underTest = new DriverService(driverRepository);
     }
 
     @Test
-    void canAddDriver() {
+    public void canAddDriver() {
         // given
         String email = "hawkings@gmail";
         Driver driver = new Driver(
@@ -73,7 +73,7 @@ class DriverServiceTest {
     }
 
     @Test
-    void canGetAllDrivers() {
+    public void canGetAllDrivers() {
         // given
         underTest.getAllDrivers();
         // then
@@ -81,7 +81,7 @@ class DriverServiceTest {
     }
 
     @Test
-    void canDeleteDriver() {
+    public void canDeleteDriver() {
         // given
         long id = 10;
         // by default our mock will give false
@@ -96,7 +96,7 @@ class DriverServiceTest {
     }
 
     @Test
-    void willThrowWhenEmailIsTaken() {
+    public void willThrowWhenEmailIsTaken() {
         // given
         Driver driver = new Driver(
                 "John",
@@ -121,7 +121,7 @@ class DriverServiceTest {
     }
 
     @Test
-    void willThrowWhenDeleteDriverNotFound() {
+    public void willThrowWhenDeleteDriverNotFound() {
         // given
         long id = 10;
         given(driverRepository.existsById(id))
@@ -133,5 +133,39 @@ class DriverServiceTest {
                 .hasMessageContaining("Driver with id " + id + " does not exist");
 
         verify(driverRepository, never()).deleteById(any());
+    }
+
+    @Test
+    public void canGetDriverById() {
+        // given
+        long id = 10;
+        String email = "hawkings@gmail";
+        Driver driver = new Driver(
+                "John",
+                "Hawkings",
+                email,
+                VehicleType.CAR,
+                2.0,
+                100.0);
+
+        given(driverRepository.findDriverById(id)).willReturn(java.util.Optional.of(driver));
+
+        //when
+        underTest.getDriverById(id);
+
+        // then
+        ArgumentCaptor<Driver> driverArgumentCaptor =
+                ArgumentCaptor.forClass(Driver.class);
+
+        // we verify the save method is being called and capture the driver
+        // being passed as argument
+        verify(driverRepository)
+                .findDriverById(id);
+
+        // in order to compare it with our driver
+        Driver capturedDriver = driverArgumentCaptor.getValue();
+
+        assertThat(capturedDriver).isEqualTo(driver);
+
     }
 }

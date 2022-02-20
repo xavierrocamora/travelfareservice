@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DriverService {
@@ -33,8 +34,12 @@ public class DriverService {
         return  driverRepository.findAll();
     }
 
-    public Driver getDriverById(Long id) {
-        return driverRepository.findDriverById(id);
+    public Driver getDriverById(Long driverId) {
+        return driverRepository.findDriverById(driverId)
+                .orElseThrow(() -> new DriverNotFoundException(
+                        "Driver with id " + driverId + " does not exist"
+                        )
+                );
     }
 
     public Driver updateDriver(Driver driver) {
