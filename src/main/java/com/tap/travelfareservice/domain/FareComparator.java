@@ -19,7 +19,7 @@ public class FareComparator {
                 .collect(
                 Collectors.toMap(d -> d, d -> calculateFarePerDriver(d)));
 
-        // Get the minimun fare cost and the associated driver
+        // Get the minimum fare cost and the associated driver
         Map.Entry<Driver, Double> min = Collections.min(faresPerDriverMap.entrySet(),
                 Map.Entry.comparingByValue());
 
@@ -27,7 +27,7 @@ public class FareComparator {
         System.out.println("Driver :" + min.getKey());
 
         return mapTravelFare(min.getKey(), min.getValue());
-    };
+    }
 
     public Double calculateFarePerDriver(Driver driver){
         Double distanceTraveledUnits =
@@ -36,7 +36,7 @@ public class FareComparator {
                 : (travelFareData.getDistanceTraveled() - driver.getBaseFareDistance())/ travelFareData.getTraveledUnit();
 
         return driver.getBaseFarePrice() + (distanceTraveledUnits * travelFareData.getCostPerDistanceTraveled());
-    };
+    }
 
     private TravelFare mapTravelFare(Driver driver, Double fareCost) {
         TravelFare travelFare = new TravelFare();

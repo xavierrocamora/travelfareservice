@@ -31,7 +31,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(apiException, badRequest);
     }
 
-    // Custom message for the cases not covered by an exceptionHandler
+    // Custom message for the call to methods not covered by a Handler
     @Override
     protected ResponseEntity<Object> handleNoHandlerFoundException(NoHandlerFoundException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         HttpStatus notFound = HttpStatus.NOT_FOUND;

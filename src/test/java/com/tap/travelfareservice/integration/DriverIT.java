@@ -65,7 +65,7 @@ public class DriverIT {
                 name,
                 surname,
                 email,
-                VehicleType.CAR,
+                VehicleType.TAXI,
                 baseFarePrice,
                 baseFareDistance
         );
@@ -102,7 +102,7 @@ public class DriverIT {
                 name,
                 surname,
                 email,
-                VehicleType.CAR,
+                VehicleType.TAXI,
                 baseFarePrice,
                 baseFareDistance
         );

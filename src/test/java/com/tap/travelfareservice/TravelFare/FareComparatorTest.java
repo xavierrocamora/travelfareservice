@@ -15,7 +15,7 @@ public class FareComparatorTest {
             "John",
             "Hawkings",
             "hawkings@gmail",
-            VehicleType.CAR,
+            VehicleType.TAXI,
             300.0,
             250.0);
 
@@ -23,7 +23,7 @@ public class FareComparatorTest {
             "Bob",
             "Hawkings",
             "bhawkings@gmail",
-            VehicleType.CAR,
+            VehicleType.TAXI,
             200.0,
             150.0);
 
@@ -31,7 +31,7 @@ public class FareComparatorTest {
             "Mary",
             "Sunders",
             "sunders@gmail",
-            VehicleType.VAN,
+            VehicleType.OTHER,
             200.0,
             250.0);
 

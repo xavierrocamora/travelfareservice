@@ -48,7 +48,7 @@ class DriverServiceTest {
                 "John",
                 "Hawkings",
                 email,
-                VehicleType.CAR,
+                VehicleType.TAXI,
                 2.0,
                 100.0);
 
@@ -102,7 +102,7 @@ class DriverServiceTest {
                 "John",
                 "Hawkings",
                 "hawkings@gmail",
-                VehicleType.CAR,
+                VehicleType.TAXI,
                 2.0,
                 100.0);
 
@@ -144,7 +144,7 @@ class DriverServiceTest {
                 "John",
                 "Hawkings",
                 email,
-                VehicleType.CAR,
+                VehicleType.TAXI,
                 2.0,
                 100.0);
 
