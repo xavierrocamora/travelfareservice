@@ -8,9 +8,11 @@ import com.github.javafaker.Faker;
 import com.tap.travelfareservice.domain.Driver;
 import com.tap.travelfareservice.domain.VehicleType;
 import com.tap.travelfareservice.repository.DriverRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -25,14 +27,20 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@SpringBootTest
 @AutoConfigureMockMvc
 public class DriverIT {
 
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
     private ObjectMapper objectMapper;
+
+    @BeforeEach
+    void setUp() {
+        objectMapper = new ObjectMapper();
+
+    }
 
 
     @Autowired
@@ -57,7 +65,7 @@ public class DriverIT {
                 name,
                 surname,
                 email,
-                VehicleType.CAR,
+                VehicleType.TAXI,
                 baseFarePrice,
                 baseFareDistance
         );
@@ -70,7 +78,7 @@ public class DriverIT {
                         .content(objectMapper.writeValueAsString(driver))
                 );
         // then
-        resultActions.andExpect(status().isOk());
+        resultActions.andExpect(status().isCreated());
         List<Driver> drivers = driverRepository.findAll();
         assertThat(drivers)
                 .usingRecursiveFieldByFieldElementComparatorIgnoringFields("id")
@@ -94,7 +102,7 @@ public class DriverIT {
                 name,
                 surname,
                 email,
-                VehicleType.CAR,
+                VehicleType.TAXI,
                 baseFarePrice,
                 baseFareDistance
         );
@@ -104,7 +112,7 @@ public class DriverIT {
                 .perform(post("/api/v1/drivers")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(driver))
-                ).andExpect(status().isOk());
+                ).andExpect(status().isCreated());
 
         // recover the inserted driver's id
         MvcResult getDriversResult = mockMvc.perform(get("/api/v1/drivers")

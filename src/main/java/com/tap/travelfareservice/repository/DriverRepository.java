@@ -7,7 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.Optional;
 
 public interface DriverRepository extends JpaRepository<Driver, Long> {
-    Driver findDriverById(Long id);
+    Optional<Driver> findDriverById(Long id);
+
     @Query("" +
             "SELECT CASE WHEN COUNT(d) > 0 THEN " +
             "TRUE ELSE FALSE END " +

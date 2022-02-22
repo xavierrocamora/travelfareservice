@@ -29,7 +29,7 @@ public class DriverRepositoryTest {
                 "John",
                 "Hawkings",
                 email,
-                VehicleType.CAR,
+                VehicleType.TAXI,
                 2.0,
                 100.0);
         undertTest.save(driver);
