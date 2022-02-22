@@ -2,7 +2,6 @@ package com.tap.travelfareservice.repository;
 
 import com.tap.travelfareservice.domain.TravelFare;
 import com.tap.travelfareservice.domain.TravelFareData;
-import com.tap.travelfareservice.exception.ServerInternalException;
 import lombok.NoArgsConstructor;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Repository;
@@ -18,24 +17,20 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Repository("IO-CSV")
 public class TravelFareDataAccessService implements TravelFareRepository{
-    private String fileToRead;
-    private String fileToWrite;
+    private String fileToRead = "travelFareData.csv";
+    private String fileToWrite = "cheapestFares.csv";
 
     @Override
     public TravelFareData getTravelFareData() {
         List<TravelFareData> list = readCSV();
-        if (list.isEmpty()) {
-            throw new ServerInternalException("Could not get travel fare data");
-        }
-        return list.get(0);
+
+        return list.isEmpty() ? null : list.get(0);
     }
 
     @Override
     public boolean saveCheapestTravelFare(TravelFare travelFare) {
-        if (!canWriteCSV(travelFare, true)) {
-            throw  new ServerInternalException("Could not save cheapest travel fare.");
-        }
-        return true;
+
+        return canWriteCSV(travelFare, true);
     }
 
     private List<TravelFareData> readCSV() {

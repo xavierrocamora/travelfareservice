@@ -2,11 +2,15 @@ package com.tap.travelfareservice.domain;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import lombok.*;
 
+@NoArgsConstructor
+@Getter
+@Setter
 public class FareComparator {
 
-    private final List<Driver> drivers;
-    private final TravelFareData travelFareData;
+    private List<Driver> drivers;
+    private TravelFareData travelFareData;
 
     public FareComparator(List<Driver> drivers, TravelFareData travelFareData) {
         this.drivers = drivers;

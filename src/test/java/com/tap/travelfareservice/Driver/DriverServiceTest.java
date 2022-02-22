@@ -14,7 +14,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
-import org.springframework.web.client.HttpClientErrorException;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
@@ -31,9 +30,17 @@ class DriverServiceTest {
     // In this unitary test we want to test the service in a completely
     // independent way of our repository, which we know already works
     // as proven by the repository unit test.
-    // Therefore we use a mock of the repository
+    // Therefore, we use repository mock
     @Mock private DriverRepository driverRepository;
     private DriverService underTest;
+
+    private static  final Driver driver = new Driver(
+            "John",
+            "Hawkings",
+            "hawkings@gmail.com",
+            VehicleType.TAXI,
+            300.0,
+            250.0);
 
     @BeforeEach
     public void setUp() {
@@ -43,14 +50,6 @@ class DriverServiceTest {
     @Test
     public void canAddDriver() {
         // given
-        String email = "hawkings@gmail";
-        Driver driver = new Driver(
-                "John",
-                "Hawkings",
-                email,
-                VehicleType.TAXI,
-                2.0,
-                100.0);
 
         // when
         underTest.addDriver(driver);
@@ -68,8 +67,6 @@ class DriverServiceTest {
         Driver capturedDriver = driverArgumentCaptor.getValue();
 
         assertThat(capturedDriver).isEqualTo(driver);
-
-
     }
 
     @Test
@@ -92,19 +89,11 @@ class DriverServiceTest {
         underTest.deleteDriver(id);
         // then
         verify(driverRepository).deleteById(id);
-
     }
 
     @Test
     public void willThrowWhenEmailIsTaken() {
         // given
-        Driver driver = new Driver(
-                "John",
-                "Hawkings",
-                "hawkings@gmail",
-                VehicleType.TAXI,
-                2.0,
-                100.0);
 
         given(driverRepository.selectExistsEmail(anyString()))
                 .willReturn(true);
@@ -139,14 +128,6 @@ class DriverServiceTest {
     public void canGetDriverById() {
         // given
         long id = 10;
-        String email = "hawkings@gmail";
-        Driver driver = new Driver(
-                "John",
-                "Hawkings",
-                email,
-                VehicleType.TAXI,
-                2.0,
-                100.0);
 
         given(driverRepository.findDriverById(id)).willReturn(java.util.Optional.of(driver));
 
@@ -154,18 +135,17 @@ class DriverServiceTest {
         underTest.getDriverById(id);
 
         // then
-        ArgumentCaptor<Driver> driverArgumentCaptor =
-                ArgumentCaptor.forClass(Driver.class);
+        ArgumentCaptor<Long> driverIdArgumentCaptor =
+                ArgumentCaptor.forClass(Long.class);
 
-        // we verify the save method is being called and capture the driver
+        // we verify the save method is being called and capture the driver id
         // being passed as argument
         verify(driverRepository)
-                .findDriverById(id);
+                .findDriverById(driverIdArgumentCaptor.capture());
 
-        // in order to compare it with our driver
-        Driver capturedDriver = driverArgumentCaptor.getValue();
+        // in order to compare it with our driver id
+        Long capturedDriverId = driverIdArgumentCaptor.getValue();
 
-        assertThat(capturedDriver).isEqualTo(driver);
-
+        assertThat(capturedDriverId).isEqualTo(id);
     }
 }
