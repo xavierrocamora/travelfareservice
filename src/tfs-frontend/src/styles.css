@@ -1,6 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
+body {
+  background-color: #eee;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -9,4 +13,12 @@
   background-color: blue;
   text-align: center;
   color: white;
+}
+
+.userImage {
+  width: 75px;
+  height: 75px;
+  border-radius: 100px;
+  overflow: hidden;
+  margin-right: 15px;
 }

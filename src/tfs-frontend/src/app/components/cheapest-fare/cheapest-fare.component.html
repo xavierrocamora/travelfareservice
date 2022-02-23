@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="text-center">
+    <h1 class="h1-strong">{{title}}</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-header">
+          <h4 class="card-title">{{travelHeader}}</h4> 
+      </div>
+      <div class="card-body">
+        <p>Travel distance: {{travelFare?.distanceTraveled}}</p>
+        <p>Travel units: {{travelFare?.traveledUnit}}</p>
+        <p>Cost per travel unit: {{travelFare?.costPerDistanceTraveled}}</p>
+      </div>
+      <div class="card-footer">
+        <h5>Cheapest Cost: {{cheapestCost}}</h5>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">{{bestDriverHeader}}</h4> 
+      </div>
+      <div class="card-body row">
+        <div class="col-6">
+          <img src="assets/user.jpg" class="userImage mx-auto d-block img-fluid"/>
+        </div>
+        <div class="col-6 card-title align-self-center mb-0">
+           <h5>{{driver?.name + ' ' + driver?.surname}}</h5>
+           <p class="m-0">{{driver?.vehicleType}}</p>
+        </div>
+     </div>
+     <ul class="list-group list-group-flush">
+        <li class="list-group-item"><i class="fa fa-envelope float-right"></i>{{driver?.email}}</li>
+        <li class="list-group-item"><i class="fa fa-phone float-right"></i>Base Fare Price : {{driver?.baseFarePrice}}</li>
+        <li class="list-group-item"><i class="fa fa-phone float-right"></i>Base Fare Distance : {{driver?.baseFareDistance}}</li>
+     </ul>
+    </div> 
+  </div>
+</div>
+<div class="row">
+  <div>
+    <button type="button" class="btn btn-primary" (click)="onReturnBack()">Return home</button>
+  </div>
+</div>
+

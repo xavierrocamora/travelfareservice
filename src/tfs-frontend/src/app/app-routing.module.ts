@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddDriverFormComponent } from './components/add-driver-form/add-driver-form.component';
+import { CheapestFareComponent } from './components/cheapest-fare/cheapest-fare.component';
 import { DriversListComponent } from './components/drivers-list/drivers-list.component';
 import { UpdateDriverFormComponent } from './components/update-driver-form/update-driver-form.component';
 
@@ -8,6 +9,7 @@ const routes: Routes = [
   {path: 'drivers', component: DriversListComponent},
   {path: 'add-driver', component: AddDriverFormComponent},
   {path: 'update-driver/:id', component: UpdateDriverFormComponent},
+  {path: 'cheapest-fare', component: CheapestFareComponent},
   {path: '', redirectTo: 'drivers', pathMatch: 'full'}
 ];
 

@@ -10,7 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class DriversListComponent implements OnInit {
 
-  drivers: Driver[];
+  public drivers: Driver[];
 
   constructor(
     private driverService: DriverService
