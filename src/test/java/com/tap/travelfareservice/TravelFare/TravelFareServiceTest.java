@@ -3,7 +3,7 @@ package com.tap.travelfareservice.TravelFare;
 import com.tap.travelfareservice.domain.FareComparator;
 import com.tap.travelfareservice.domain.TravelFare;
 import com.tap.travelfareservice.domain.TravelFareData;
-import com.tap.travelfareservice.exception.DriverNotFoundException;
+import com.tap.travelfareservice.exception.ResourceNotFoundException;
 import com.tap.travelfareservice.exception.ServerInternalException;
 import com.tap.travelfareservice.repository.DriverRepository;
 import com.tap.travelfareservice.repository.TravelFareRepository;
@@ -43,6 +43,12 @@ public class TravelFareServiceTest {
     @Test
     public void canGetTravelFareData() {
         // given
+        given(travelFareRepository.getTravelFareData())
+                .willReturn(new TravelFareData());
+        given(fareComparator.calculateCheapestFare())
+                .willReturn(new TravelFare());
+        given(travelFareRepository.saveCheapestTravelFare(new TravelFare()))
+                .willReturn(true);
 
         // when
         underTest.getCheapestFare();
@@ -59,6 +65,8 @@ public class TravelFareServiceTest {
                 .willReturn(new TravelFareData());
         given(fareComparator.calculateCheapestFare())
                 .willReturn(travelFare);
+        given(travelFareRepository.saveCheapestTravelFare(new TravelFare()))
+                .willReturn(true);
 
         // when
         underTest.getCheapestFare();

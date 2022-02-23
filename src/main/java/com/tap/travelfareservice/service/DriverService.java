@@ -2,7 +2,7 @@ package com.tap.travelfareservice.service;
 
 import com.tap.travelfareservice.domain.Driver;
 import com.tap.travelfareservice.exception.BadRequestException;
-import com.tap.travelfareservice.exception.DriverNotFoundException;
+import com.tap.travelfareservice.exception.ResourceNotFoundException;
 import com.tap.travelfareservice.repository.DriverRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +35,7 @@ public class DriverService {
 
     public Driver getDriverById(Long driverId) {
         return driverRepository.findDriverById(driverId)
-                .orElseThrow(() -> new DriverNotFoundException(
+                .orElseThrow(() -> new ResourceNotFoundException(
                         "Driver with id " + driverId + " does not exist"
                         )
                 );
@@ -47,7 +47,7 @@ public class DriverService {
 
     public void deleteDriver(Long driverId) {
         if(!driverRepository.existsById(driverId)) {
-            throw new DriverNotFoundException(
+            throw new ResourceNotFoundException(
                     "Driver with id " + driverId + " does not exist"
             );
         }

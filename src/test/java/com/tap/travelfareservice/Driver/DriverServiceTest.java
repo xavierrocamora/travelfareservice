@@ -3,7 +3,7 @@ package com.tap.travelfareservice.Driver;
 import com.tap.travelfareservice.domain.Driver;
 import com.tap.travelfareservice.domain.VehicleType;
 import com.tap.travelfareservice.exception.BadRequestException;
-import com.tap.travelfareservice.exception.DriverNotFoundException;
+import com.tap.travelfareservice.exception.ResourceNotFoundException;
 import com.tap.travelfareservice.repository.DriverRepository;
 import com.tap.travelfareservice.service.DriverService;
 import org.junit.jupiter.api.BeforeEach;
@@ -118,7 +118,7 @@ class DriverServiceTest {
         // when
         // then
         assertThatThrownBy(() -> underTest.deleteDriver(id))
-                .isInstanceOf(DriverNotFoundException.class)
+                .isInstanceOf(ResourceNotFoundException.class)
                 .hasMessageContaining("Driver with id " + id + " does not exist");
 
         verify(driverRepository, never()).deleteById(any());

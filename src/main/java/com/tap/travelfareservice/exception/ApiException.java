@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 
 import java.time.ZonedDateTime;
 
+// Exception message with a given format to be displayed on responses
 public class ApiException {
     private final String message;
     private final HttpStatus httpStatus;

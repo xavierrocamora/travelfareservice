@@ -3,10 +3,12 @@ package com.tap.travelfareservice.domain;
 import java.util.*;
 import java.util.stream.Collectors;
 import lombok.*;
+import org.springframework.stereotype.Component;
 
 @NoArgsConstructor
 @Getter
 @Setter
+@Component
 public class FareComparator {
 
     private List<Driver> drivers;

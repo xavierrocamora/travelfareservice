@@ -1,9 +1,6 @@
 package com.tap.travelfareservice.TravelFare;
 
-import com.tap.travelfareservice.domain.Driver;
-import com.tap.travelfareservice.domain.TravelFare;
-import com.tap.travelfareservice.domain.TravelFareData;
-import com.tap.travelfareservice.domain.VehicleType;
+import com.tap.travelfareservice.domain.*;
 import com.tap.travelfareservice.repository.TravelFareDataAccessService;
 import com.tap.travelfareservice.repository.TravelFareRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -90,6 +87,5 @@ public class TravelFareRepositoryTest {
         assertEquals(2, lines.size());
         assertEquals(header, lines.get(0));
         assertEquals(fare, lines.get(1));
-
     }
 }
