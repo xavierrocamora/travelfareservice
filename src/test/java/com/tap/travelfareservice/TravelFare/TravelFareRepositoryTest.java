@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,7 @@ public class TravelFareRepositoryTest {
     @BeforeEach
     public void setUp() {
         underTest = new TravelFareDataAccessService("/travelFareDataTest.csv", "cheapestFaresTest.csv");
+        new File("cheapestFaresTest.csv").delete();
     }
 
     @ParameterizedTest
