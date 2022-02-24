@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Driver } from 'src/app/domain/driver';
 import { DriverService } from 'src/app/services/driver.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-update-driver-form',

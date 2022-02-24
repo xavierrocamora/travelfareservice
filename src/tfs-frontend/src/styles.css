@@ -22,3 +22,24 @@ body {
   overflow: hidden;
   margin-right: 15px;
 }
+
+.card {
+  margin-bottom: 20px;
+}
+
+#main-title {
+  margin-top: 15px !important;
+  margin-bottom: 35px !important;
+}
+
+#fare-title {
+  margin-bottom: 30px !important;
+}
+
+#driver-form {
+  margin-bottom: 30px;
+}
+
+#driver-button {
+  size: 50px !important;
+}
