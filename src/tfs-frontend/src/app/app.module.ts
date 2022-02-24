@@ -10,6 +10,7 @@ import { DriverComponent } from './components/driver/driver.component';
 import { DriversListComponent } from './components/drivers-list/drivers-list.component';
 import { AddDriverFormComponent } from './components/add-driver-form/add-driver-form.component';
 import { UpdateDriverFormComponent } from './components/update-driver-form/update-driver-form.component';
+import { CheapestFareComponent } from './components/cheapest-fare/cheapest-fare.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { UpdateDriverFormComponent } from './components/update-driver-form/updat
     DriversListComponent,
     DriverComponent,
     AddDriverFormComponent,
-    UpdateDriverFormComponent
+    UpdateDriverFormComponent,
+    CheapestFareComponent
   ],
   imports: [
     BrowserModule,

@@ -1,69 +1,74 @@
-<div class="col-sm-4 col-sm-offset-4">
-  <h1 class="h1-strong">{{title}}</h1>
+<div class="row d-flex justify-content-center">
+    <div class="col-lg-6" id="driver-form">
+        <h1 class="h1-strong text-center">{{title}}</h1>
+      
+        <form #addDriverForm="ngForm" (ngSubmit)="onSubmit(addDriverForm)" class="col-md-12 well well-lg">
+          <p>
+              <label>Name</label>
+              <input type="text" name="name" #name="ngModel" ngModel
+              class="form-control" required />
+              <span class="text-warning" *ngIf="!name.valid && name.touched">
+                  A name is required!
+              </span>
+          </p>
+      
+          <p>
+              <label>Surname</label>
+              <input type="text" name="surname" #surname="ngModel" ngModel
+              class="form-control" required />
+              <span class="text-warning" *ngIf="!surname.valid && surname.touched">
+                  A surname is required!
+              </span>
+          </p>
+      
+          <p>
+              <label>Email</label>
+              <input type="email" name="email" #email="ngModel" ngModel
+              class="form-control" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
+              <span class="text-warning" *ngIf="!email.valid && email.touched">
+                  A valid email format is required!
+              </span>
+          </p>
+      
+          <p>
+              <label>Vehicle Type</label>
+              <select name="vehicleType" #vehicleType="ngModel" ngModel
+              class="form-control" required>
+                <option value="TAXI">Taxi</option>
+                <option value="BUS">Bus</option>
+                <option value="TRAIN">Train</option>
+                <option value="OTHER">Other</option>
+            </select>
 
-  <form #addDriverForm="ngForm" (ngSubmit)="onSubmit(addDriverForm)" class="col-md-12 well well-lg">
-    <p>
-        <label>Name</label>
-        <input type="text" name="name" #name="ngModel" ngModel
-        class="form-control" required />
-        <span class="text-warning" *ngIf="!name.valid && name.touched">
-            A name is required!
-        </span>
-    </p>
-
-    <p>
-        <label>Surname</label>
-        <input type="text" name="surname" #surname="ngModel" ngModel
-        class="form-control" required />
-        <span class="text-warning" *ngIf="!surname.valid && surname.touched">
-            A surname is required!
-        </span>
-    </p>
-
-    <p>
-        <label>Email</label>
-        <input type="email" name="email" #email="ngModel" ngModel
-        class="form-control" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
-        <span class="text-warning" *ngIf="!email.valid && email.touched">
-            A valid email format is required!
-        </span>
-    </p>
-
-    <p>
-        <label>Vehicle Type</label>
-        <input type="text" name="vehicleType" #vehicleType="ngModel" ngModel
-        class="form-control" required />
-        <span class="text-warning" *ngIf="!vehicleType.valid && vehicleType.touched">
-            A password for your account is required!
-        </span>
-    </p>
-
-    <p>
-      <label>Base Fare Price</label>
-      <input type="number" name="baseFarePrice" #baseFarePrice="ngModel" ngModel
-      class="form-control" required />
-      <span class="text-warning" *ngIf="!baseFarePrice.valid && baseFarePrice.touched">
-          A price for the basic fare is required!
-      </span>
-  </p>
-
-  <p>
-    <label>Base Fare Distance</label>
-    <input type="number" name="baseFareDistance" #baseFareDistance="ngModel" ngModel
-    class="form-control" required />
-    <span class="text-warning" *ngIf="!baseFareDistance.valid && baseFareDistance.touched">
-        A base distance is required!
-    </span>
-</p>
-
-    <input type="submit" value="{{title}}" class="btn btn-success btn-block" 
-    [disabled]="!addDriverForm.form.valid " />
-
-</form>
-
-  
-
-  
-
-  
+              <span class="text-warning" *ngIf="!vehicleType.valid && vehicleType.touched">
+                  A password for your account is required!
+              </span>
+          </p>
+      
+          <p>
+            <label>Base Fare Price</label>
+            <input type="number" name="baseFarePrice" #baseFarePrice="ngModel" ngModel
+            class="form-control" required />
+            <span class="text-warning" *ngIf="!baseFarePrice.valid && baseFarePrice.touched">
+                A price for the basic fare is required!
+            </span>
+        </p>
+      
+        <p>
+          <label>Base Fare Distance</label>
+          <input type="number" name="baseFareDistance" #baseFareDistance="ngModel" ngModel
+          class="form-control" required />
+          <span class="text-warning" *ngIf="!baseFareDistance.valid && baseFareDistance.touched">
+              A base distance is required!
+          </span>
+      </p>
+          <div class="text-center">
+              <input type="submit" value="{{title}}" class="btn btn-success btn-block" 
+          [disabled]="!addDriverForm.form.valid" />
+          </div>
+          
+      </form>
+        
+    </div>
 </div>
+

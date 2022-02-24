@@ -87,7 +87,7 @@ public class TravelFareDataAccessService implements TravelFareRepository{
         boolean isWritten = false;
         File f = new File(fileToWrite);
         boolean hasHeader = false;
-        if (f.exists() && isAppend) {
+        if (f.exists() && !isAppend) {
             if (!f.delete()) {
                 log.info("File " + fileToWrite + "could not be deleted." );
             }

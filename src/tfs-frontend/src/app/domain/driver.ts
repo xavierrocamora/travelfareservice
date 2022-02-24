@@ -1,7 +1,7 @@
 export enum VehicleType {
-  Car = "Car",
-  Bike = "Bike",
-  Van = "Van",
+  Taxi = "Taxi",
+  Bus = "Bus",
+  Train = "Train",
   Other = "Other"
 }
 
@@ -12,5 +12,5 @@ export interface Driver {
     email: string,
     vehicleType: VehicleType,
     baseFarePrice: number,
-    baseFareDistance: number
+    baseFareDistance: number 
 }

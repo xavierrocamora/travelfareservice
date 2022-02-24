@@ -26,6 +26,17 @@ export class DriverComponent implements OnInit {
     this.router.navigate(['update-driver', id]);
   }
 
+  onOpenModal() {
+    const container = document.getElementById('main-view-container');
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.style.display = 'none';
+    button.setAttribute('data-bs-toggle', 'modal');
+    button.setAttribute('data-bs-target', '#myModal');
+    container?.appendChild(button);
+    button.click();
+  }
+
   onDeleteDriver(id: number){
     this.driverService.deleteDriver(id).subscribe(
       {

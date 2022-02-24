@@ -41,7 +41,19 @@ public class DriverService {
                 );
     }
 
-    public Driver updateDriver(Driver driver) {
+    public Driver updateDriver(Long driverId, Driver updatedDriver) {
+        Driver driver = driverRepository.findDriverById(driverId)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                                "Driver with id " + driverId + " does not exist"
+                        )
+                );
+        driver.setName(updatedDriver.getName());
+        driver.setSurname(updatedDriver.getSurname());
+        driver.setEmail(updatedDriver.getEmail());
+        driver.setVehicleType(updatedDriver.getVehicleType());
+        driver.setBaseFarePrice(updatedDriver.getBaseFarePrice());
+        driver.setBaseFareDistance(updatedDriver.getBaseFareDistance());
+
         return driverRepository.save(driver);
     }
 
