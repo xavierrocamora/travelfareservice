@@ -13,7 +13,7 @@ import { NgForm } from '@angular/forms';
 export class UpdateDriverFormComponent implements OnInit {
 
   public driverId: any;
-  public driver: any;
+  public driver!: Driver;
   public title: string;
 
   constructor(

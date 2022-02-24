@@ -5,10 +5,11 @@ import lombok.AllArgsConstructor;
 import com.tap.travelfareservice.service.DriverService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
+import javax.validation.Valid;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "api/v1/drivers")
@@ -29,14 +30,14 @@ public class DriverController {
     }
 
     @PostMapping
-    public ResponseEntity<Driver> addDriver(@RequestBody Driver driver) {
+    public ResponseEntity<Driver> addDriver(@Valid @NonNull @RequestBody Driver driver) {
         Driver newDriver = driverService.addDriver(driver);
         return new ResponseEntity<>(newDriver, HttpStatus.CREATED);
     }
 
-    @PutMapping
-    public ResponseEntity<Driver> updateDriver(@RequestBody Driver driver) {
-        Driver updateDriver = driverService.updateDriver(driver);
+    @PutMapping(path = "{id}")
+    public ResponseEntity<Driver> updateDriver(@PathVariable("id") Long id, @Valid @NonNull @RequestBody Driver driverToUpdate) {
+        Driver updateDriver = driverService.updateDriver(id, driverToUpdate);
         return new ResponseEntity<>(updateDriver, HttpStatus.OK);
     }
 
@@ -45,6 +46,4 @@ public class DriverController {
         driverService.deleteDriver(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-
 }

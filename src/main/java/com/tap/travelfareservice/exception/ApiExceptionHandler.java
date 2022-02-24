@@ -110,8 +110,13 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
         });
         HttpStatus badRequest = HttpStatus.BAD_REQUEST;
+        ValidationException validationException = new ValidationException(
+                errors,
+                badRequest,
+                ZonedDateTime.now(ZoneId.of("Z"))
+        );
 
         // 2. Return response entity
-        return new ResponseEntity<>(errors, badRequest);
+        return new ResponseEntity<>(validationException, badRequest);
     }
 }
